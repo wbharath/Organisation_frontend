@@ -6,6 +6,6 @@ export const listEmployees = ()=>{
     return axios.get(REST_API_BASE_URL)
 }
 
-export const addEmployee = ()=>{
-    return axios.post(REST_API_BASE_URL)
+export const createEmployee = (employee)=>{
+    return axios.post(REST_API_BASE_URL,employee)
 }
