@@ -5,15 +5,15 @@ const HeaderComponent = () => {
     <div>
       <header>
         <nav
-          class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
+          className="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
           data-bs-theme="dark"
         >
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">
               Employee Management System
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
@@ -21,7 +21,7 @@ const HeaderComponent = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
             <div
               className="collapse navbar-collapse"
@@ -39,14 +39,14 @@ const HeaderComponent = () => {
                   </NavLink>
                 </li>
               </ul>
-              <form class="d-flex" role="search">
+              <form className="d-flex" role="search">
                 <input
-                  class="form-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button class="btn btn-outline-success" type="submit">
+                <button className="btn btn-outline-success" type="submit">
                   Search
                 </button>
               </form>

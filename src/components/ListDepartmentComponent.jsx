@@ -1,28 +1,59 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { deleteDepartment, listDepartment } from '../services/DepartmentService'
 
 const ListDepartmentComponent = () => {
-  let dummyZData = [
-    {
-      id: 1,
-      departmentName: 'R&D',
-      departmentDescription: 'Research and Development Department'
-    },
-    {
-      id: 2,
-      departmentName: 'Finance',
-      departmentDescription: 'Finance Department'
-    },
-    {
-      id: 3,
-      departmentName: 'Sports',
-      departmentDescription: 'Sports Department'
-    }
-  ]
+  const [departments, setDepartments] = useState([])
+  const navigator = useNavigate()
 
-  const [departments, setDepartments] = useState(dummyZData)
+  useEffect(() => {
+    getAllDepartments()
+  }, [departments])
+
+  function getAllDepartments() {
+    listDepartment()
+      .then((response) => {
+        setDepartments(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  // let dummyZData = [
+  //   {
+  //     id: 1,
+  //     departmentName: 'R&D',
+  //     departmentDescription: 'Research and Development Department'
+  //   },
+  //   {
+  //     id: 2,
+  //     departmentName: 'Finance',
+  //     departmentDescription: 'Finance Department'
+  //   },
+  //   {
+  //     id: 3,
+  //     departmentName: 'Sports',
+  //     departmentDescription: 'Sports Department'
+  //   }
+  // ]
 
   function addNewDepartment() {
-    navigator('/add-employee')
+    navigator('/add-department')
+  }
+
+  function updateDepartment(id) {
+    navigator(`/edit-department/${id}`)
+
+  }
+  function removeDepartment(id) {
+    console.log(id)
+    deleteDepartment(id)
+      .then((response) => {
+        getAllDepartments()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
   return (
     <div className="container">
@@ -46,6 +77,22 @@ const ListDepartmentComponent = () => {
                 <td>{department.id}</td>
                 <td>{department.departmentName}</td>
                 <td>{department.departmentDescription}</td>
+                <td>
+                  <button
+                    type="submit"
+                    className="btn btn-info me-2"
+                    onClick={() => updateDepartment(department.id)}
+                  >
+                    Update
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                    onClick={() => removeDepartment(department.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             )
           })}
